@@ -1,0 +1,27 @@
+{
+    "client": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+            },
+            "surname": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 32
+            },
+            "email": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 120
+            }
+        },
+        "required": [
+            "name",
+            "surname",
+            "email"
+        ]
+    }
+}
