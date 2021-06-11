@@ -5,12 +5,13 @@ from flask import request
 
 class ClientResponseResource(Resource):
 
+    @app.validate("client_request", "request")
     def get(self):
         try:
             email = request.json["email"]
             client = ClientModel.query.filter_by(email=email).first()
             if not client:
-                abort(404, error=f"No client")
+                return f"Client not found", 404
         except Exception as e:
             return {"message": str(e)}, 400
         return client.to_dict(), 200
@@ -54,6 +55,6 @@ class ClientResourceList(Resource):
         try:
             client = ClientModel(**request.json)
             client.save()
-            return client.to_dict(), 201
         except Exception as e:
             return {"message": str(e)}, 400
+        return client.to_dict(), 201
