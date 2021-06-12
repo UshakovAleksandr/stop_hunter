@@ -11,7 +11,7 @@ class ClientResponseResource(Resource):
             email = request.json["email"]
             client = ClientModel.query.filter_by(email=email).first()
             if not client:
-                return f"Client not found", 404
+                return f"Client not found in 'stop_hunter service", 404
         except Exception as e:
             return {"message": str(e)}, 400
         return client.to_dict(), 200
